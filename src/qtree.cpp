@@ -35,7 +35,7 @@ std::vector<Point<2>> QTree::query_range(const Square& sq) const
 {
     std::vector<Point<2>> result;
 
-    if (!_boundary.intersects_square(sq)) return result;
+    if (!_boundary.intersects(sq)) return result;
 
     for (const auto& p : _points) {
         if (_boundary.contains_point(p)) result.push_back(p);
@@ -55,8 +55,8 @@ std::vector<Point<2>> QTree::query_range(const Square& sq) const
 
 void QTree::subdivide()
 {
-    Point<2> center = _boundary.get_center();
-    double new_radius = _boundary.get_radius() / 2;
+    auto center = _boundary.get_center();
+    auto new_radius = _boundary.get_radius() / 2;
 
     _subtrees =
     { {

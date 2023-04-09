@@ -1,7 +1,7 @@
 #pragma once
 
 #include "point.hpp"
-#include "square.hpp"
+#include "hypercube.hpp"
 
 #include <array>
 #include <vector>
@@ -11,6 +11,7 @@ namespace qtree
 {
     class QTree
     {
+        using Square = HyperCube<2>;
     public:
 
         QTree(
