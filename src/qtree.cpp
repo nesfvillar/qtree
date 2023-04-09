@@ -1,6 +1,5 @@
 #include "qtree.hpp"
 
-#include <memory>
 #include <stdexcept>
 
 using namespace qtree;
@@ -60,9 +59,9 @@ void QTree::subdivide()
 
     _subtrees =
     { {
-        {std::make_unique<QTree>(_node_capacity, Square(center + Point<2>{new_radius, new_radius }, new_radius))},
-        {std::make_unique<QTree>(_node_capacity, Square(center + Point<2>{new_radius, -new_radius }, new_radius))},
-        {std::make_unique<QTree>(_node_capacity, Square(center + Point<2>{-new_radius, -new_radius }, new_radius))},
-        {std::make_unique<QTree>(_node_capacity, Square(center + Point<2>{-new_radius, new_radius }, new_radius))}
+        {std::make_unique<QTree>(_node_capacity, Square(center + Point<2>({new_radius, new_radius}), new_radius))},
+        {std::make_unique<QTree>(_node_capacity, Square(center + Point<2>({new_radius, -new_radius }), new_radius))},
+        {std::make_unique<QTree>(_node_capacity, Square(center + Point<2>({-new_radius, -new_radius }), new_radius))},
+        {std::make_unique<QTree>(_node_capacity, Square(center + Point<2>({-new_radius, new_radius }), new_radius))}
     } };
 }
