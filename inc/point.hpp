@@ -1,6 +1,7 @@
 #pragma once
 
 #include <array>
+#include <ostream>
 
 namespace qtree
 {
@@ -8,7 +9,12 @@ namespace qtree
     class Point
     {
     public:
-        Point(std::initializer_list<T> values):
+        Point(const std::array<T, N>& values):
+            _values(values)
+        {
+        }
+
+        Point(std::array<T, N>&& values):
             _values(values)
         {
         }
@@ -33,7 +39,7 @@ namespace qtree
             std::array<T, N> result;
             for (std::size_t i = 0; i < N; i++)
             {
-                result[i] = _values[i] + _rhs[i];
+                result[i] = _values[i] + rhs[i];
             }
             return Point(result);
         }
@@ -46,6 +52,18 @@ namespace qtree
                 result[i] = _values[i] - rhs[i];
             }
             return Point(result);
+        }
+
+        friend std::ostream& operator<<(std::ostream& ostream, const Point<N, T>& point)
+        {
+            ostream << "Point: [";
+            for (std::size_t i = 0; i < N; i++)
+            {
+                ostream << point[i];
+                if (i == (N - 1)) ostream << ", ";
+            }
+            ostream << "]";
+            return ostream;
         }
 
     private:
