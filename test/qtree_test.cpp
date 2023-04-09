@@ -24,7 +24,9 @@ int main()
         qt.insert(p);
     }
 
-    auto result = qt.query_range(boundary);
+    QTree::Square check_boundary(Point<2>({ 0.5, 0.5 }), 0.5);
+
+    auto result = qt.query_range(check_boundary);
     for (const auto& r : result)
     {
         std::cout << r << '\n';
