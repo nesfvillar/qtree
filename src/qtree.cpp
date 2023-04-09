@@ -37,7 +37,7 @@ std::vector<Point<2>> QTree::query_range(const Square& sq) const
     if (!_boundary.intersects(sq)) return result;
 
     for (const auto& p : _points) {
-        if (_boundary.contains_point(p)) result.push_back(p);
+        if (sq.contains_point(p)) result.push_back(p);
     }
 
     if (_subtrees.has_value())
