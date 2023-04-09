@@ -11,7 +11,7 @@ QTree::QTree(std::size_t node_capacity, Square boundary):
 {
 }
 
-bool QTree::insert(Point<2> p)
+bool QTree::insert(const Point<2>& p)
 {
     if (!_boundary.contains_point(p)) return false;
 

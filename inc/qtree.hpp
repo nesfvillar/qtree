@@ -11,6 +11,7 @@ namespace qtree
 {
     class QTree
     {
+    public:
         using Square = HyperCube<2>;
     public:
 
