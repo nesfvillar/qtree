@@ -6,6 +6,7 @@
 #include <array>
 #include <vector>
 #include <optional>
+#include <memory>
 
 namespace qtree
 {
@@ -13,14 +14,13 @@ namespace qtree
     {
     public:
         using Square = HyperCube<2>;
-    public:
 
         QTree(
             std::size_t node_capacity,
             Square _boundary
         );
 
-        bool insert(Point<2> p);
+        bool insert(const Point<2>& p);
 
         std::vector<Point<2>> query_range(const Square& sq) const;
 
