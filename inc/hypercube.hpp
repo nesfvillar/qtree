@@ -1,6 +1,7 @@
 #pragma once
 
 #include "point.hpp"
+#include <math.h>
 
 namespace qtree
 {
@@ -18,7 +19,7 @@ namespace qtree
             auto distance = _center - point;
             for (std::size_t i = 0; i < D; i++)
             {
-                if (std::fabs(distance[i]) > _radius)
+                if (fabs(distance[i]) > _radius)
                 {
                     return false;
                 }
