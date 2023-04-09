@@ -31,7 +31,7 @@ namespace qtree
             {
                 result[i] = -_values[i];
             }
-            return Point(result);
+            return Point(std::move(result));
         }
 
         Point<N, T> operator+(const Point& rhs) const
@@ -41,7 +41,7 @@ namespace qtree
             {
                 result[i] = _values[i] + rhs[i];
             }
-            return Point(result);
+            return Point(std::move(result));
         }
 
         Point<N, T> operator-(const Point& rhs) const
@@ -51,18 +51,18 @@ namespace qtree
             {
                 result[i] = _values[i] - rhs[i];
             }
-            return Point(result);
+            return Point(std::move(result));
         }
 
         friend std::ostream& operator<<(std::ostream& ostream, const Point<N, T>& point)
         {
-            ostream << "Point: [";
+            ostream << "Point: (";
             for (std::size_t i = 0; i < N; i++)
             {
                 ostream << point[i];
-                if (i == (N - 1)) ostream << ", ";
+                if (i < (N - 1)) ostream << ", ";
             }
-            ostream << "]";
+            ostream << ")";
             return ostream;
         }
 
