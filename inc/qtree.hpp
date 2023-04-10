@@ -10,11 +10,12 @@
 
 namespace qtree
 {
+    using Square = HyperCube<2>;
+    using Circle = HyperSphere<2>;
+
     class QTree
     {
     public:
-        using Square = HyperCube<2>;
-        using Circle = HyperSphere<2>;
 
         QTree(
             std::size_t node_capacity,

@@ -6,7 +6,7 @@ using namespace qtree;
 
 int main()
 {
-    QTree::Square boundary(Point<2>({ 0, 0 }), 1.0);
+    Square boundary(Point<2>({ 0, 0 }), 1.0);
     QTree qt(1, boundary);
 
     std::initializer_list<Point<2>> list =
@@ -24,7 +24,7 @@ int main()
         qt.insert(p);
     }
 
-    QTree::Circle check_boundary(Point<2>({ 0.5, 0.5 }), 0.5);
+    Circle check_boundary(Point<2>({ 0.5, 0.5 }), 0.5);
 
     auto result = qt.query_range(check_boundary);
     for (const auto& r : result)
