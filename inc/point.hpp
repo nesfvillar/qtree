@@ -1,6 +1,7 @@
 #pragma once
 
 #include <array>
+#include <math.h>
 #include <ostream>
 
 namespace qtree
@@ -17,6 +18,28 @@ namespace qtree
         Point(std::array<T, N>&& values):
             _values(values)
         {
+        }
+
+        T euclidean_distance(const Point<N, T>& other) const
+        {
+            T distance;
+            for (const auto& d : other - *this)
+            {
+                distance += pow(d, 2);
+            }
+            return sqrt(distance);
+        }
+
+        T chebyshev_distance(const Point<N, T>& other) const
+        {
+            auto distance = other - *this;
+            T max_distance = -INFINITY;
+            for (std::size_t i = 0; i < N; i++)
+            {
+                T abs_d = fabs(distance[i]);
+                max_distance = abs_d > max_distance ? abs_d : max_distance;
+            }
+            return max_distance;
         }
 
         const T& operator[](std::size_t i) const
