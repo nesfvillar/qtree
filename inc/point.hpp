@@ -22,12 +22,13 @@ namespace qtree
 
         T euclidean_distance(const Point<N, T>& other) const
         {
-            T distance;
-            for (const auto& d : other - *this)
+            auto distance = other - *this;
+            T result;
+            for (std::size_t i = 0; i < N; i++)
             {
-                distance += pow(d, 2);
+                result += pow(distance[i], 2);
             }
-            return sqrt(distance);
+            return sqrt(result);
         }
 
         T chebyshev_distance(const Point<N, T>& other) const
