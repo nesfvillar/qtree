@@ -30,28 +30,6 @@ bool QTree::insert(const Point<2>& p)
     throw std::logic_error("Could not insert a point");
 }
 
-std::vector<Point<2>> QTree::query_range(const Square& sq) const
-{
-    std::vector<Point<2>> result;
-
-    if (!_boundary.intersects(sq)) return result;
-
-    for (const auto& p : _points) {
-        if (sq.contains_point(p)) result.push_back(p);
-    }
-
-    if (_subtrees.has_value())
-    {
-        for (const auto& subtree : _subtrees.value())
-        {
-            auto subtree_result = subtree->query_range(sq);
-            result.insert(result.end(), subtree_result.begin(), subtree_result.end());
-        }
-    }
-
-    return result;
-}
-
 void QTree::subdivide()
 {
     auto center = _boundary.get_center();
