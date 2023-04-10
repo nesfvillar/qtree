@@ -20,7 +20,13 @@ namespace qtree
 
         bool intersects(const HyperCube<D, T>& other) const
         {
-            return _center.chebyshev_distance(other._center) <= _radius + other._radius;
+            auto center_distance = other._center - _center;
+            T radius_sum = other._radius + _radius;
+            for (std::size_t i = 0; i < D; i++)
+            {
+                if (center_distance[i] <= radius_sum) return true;
+            }
+            return false;
         }
 
         const Point<D, T>& get_center() const
