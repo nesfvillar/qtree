@@ -6,9 +6,11 @@
 namespace qtree
 {
     template <std::size_t D, class Shape, class IntersectShape = Shape, class T = double>
-    concept is_shape = requires(Point<D, T> p, Shape s, IntersectShape other)
+    concept CompatibleShapes = requires(Point<D, T> p, Shape s, IntersectShape other)
     {
         {s.contains_point(p)};
+
+        {other.contains_point(p)};
 
         {intersects(s, other)};
 

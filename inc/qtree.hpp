@@ -24,7 +24,7 @@ namespace qtree
         bool insert(const Point<2>& p);
 
         template <class Shape>
-            requires is_shape<2, Shape>
+            requires CompatibleShapes<2, Square, Shape>
         std::vector<Point<2>> query_range(const Shape& shape) const
         {
             std::vector<Point<2>> result;
