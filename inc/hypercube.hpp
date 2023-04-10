@@ -1,7 +1,6 @@
 #pragma once
 
 #include "point.hpp"
-#include <math.h>
 
 namespace qtree
 {
@@ -16,30 +15,12 @@ namespace qtree
 
         bool contains_point(const Point<D, T>& point) const
         {
-            auto distance = _center - point;
-            for (std::size_t i = 0; i < D; i++)
-            {
-                if (fabs(distance[i]) > _radius)
-                {
-                    return false;
-                }
-            }
-            return true;
+            return _center.chebyshev_distance(point) <= _radius;
         }
 
         bool intersects(const HyperCube<D, T>& other) const
         {
-            auto distance_centers = other._center - _center;
-            T radius_sum = other._radius + _radius;
-
-            for (std::size_t i = 0; i < D; i++)
-            {
-                if (distance_centers[i] - radius_sum < 0)
-                {
-                    return true;
-                }
-            }
-            return false;
+            return _center.chebyshev_distance(other._center) <= _radius + other._radius;
         }
 
         const Point<D, T>& get_center() const
