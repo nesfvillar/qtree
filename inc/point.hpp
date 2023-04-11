@@ -22,25 +22,25 @@ namespace qtree
 
         T euclidean_distance(const Point<N, T>& other) const
         {
-            auto distance = other - *this;
-            T result;
+            auto difference = other - *this;
+            T distance;
             for (std::size_t i = 0; i < N; i++)
             {
-                result += pow(distance[i], 2);
+                distance += pow(difference[i], 2);
             }
-            return sqrt(result);
+            return sqrt(distance);
         }
 
         T chebyshev_distance(const Point<N, T>& other) const
         {
-            auto distance = other - *this;
-            T max_distance = -INFINITY;
+            auto difference = other - *this;
+            T distance = -INFINITY;
             for (std::size_t i = 0; i < N; i++)
             {
-                T abs_d = fabs(distance[i]);
-                max_distance = abs_d > max_distance ? abs_d : max_distance;
+                T abs_d = fabs(difference[i]);
+                distance = abs_d > distance ? abs_d : distance;
             }
-            return max_distance;
+            return distance;
         }
 
         const T& operator[](std::size_t i) const
