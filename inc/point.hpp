@@ -80,7 +80,7 @@ namespace qtree
 
         friend std::ostream& operator<<(std::ostream& ostream, const Point<N, T>& point)
         {
-            ostream << "Point: (";
+            ostream << "(";
             for (std::size_t i = 0; i < N; i++)
             {
                 ostream << point[i];
