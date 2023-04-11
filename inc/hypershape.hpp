@@ -92,8 +92,8 @@ namespace qtree
     template<std::size_t D, class T>
     bool intersects(const HyperCube<D, T>& cube, const HyperSphere<D, T>& sphere)
     {
-        auto& cube_center = cube.get_center();
-        auto& sphere_center = sphere.get_center();
+        const auto& cube_center = cube.get_center();
+        const auto& sphere_center = sphere.get_center();
 
         T sum_radius = sqrt(2) * cube.get_radius() + sphere.get_radius();
         return cube_center.euclidean_distance(sphere_center) <= sum_radius;
